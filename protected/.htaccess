@@ -1,0 +1,5 @@
+#for htaccess authentication for documentation folder
+AuthType Basic
+AuthName "documentation"
+AuthUserFile "G:\xampp\htdocs\touba316\protected\.htpasswd"
+Require valid-user
