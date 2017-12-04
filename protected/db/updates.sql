@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2017 at 05:41 PM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.11
+-- Generation Time: Dec 04, 2017 at 08:23 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -56,6 +54,23 @@ CREATE TABLE `t_country` (
   `create_time` datetime NOT NULL,
   `update_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_country`
+--
+
+INSERT INTO `t_country` (`id`, `name`, `status`, `deleted`, `created_by`, `updated_by`, `create_time`, `update_time`) VALUES
+(1, 'India2', 1, 2, 1, 1, '2017-12-03 17:46:25', '2017-12-04 06:44:41'),
+(2, 'Usa', 1, 2, 1, 0, '2017-12-03 17:47:38', '0000-00-00 00:00:00'),
+(3, 'Bangla', 1, 2, 1, 0, '2017-12-03 17:56:57', '0000-00-00 00:00:00'),
+(4, 'Russia', 1, 2, 1, 0, '2017-12-03 18:02:42', '0000-00-00 00:00:00'),
+(5, 'Africa', 1, 2, 1, 0, '2017-12-03 18:02:48', '0000-00-00 00:00:00'),
+(6, 'Jamaica1', 1, 1, 1, 1, '2017-12-03 18:02:53', '2017-12-04 06:13:02'),
+(7, 'Myanmar', 1, 1, 1, 1, '2017-12-03 18:05:49', '2017-12-04 06:12:41'),
+(8, 'Country6', 1, 1, 1, 1, '2017-12-04 06:13:38', '2017-12-04 06:13:45'),
+(9, 'Country7', 1, 1, 1, 1, '2017-12-04 06:13:54', '2017-12-04 06:42:23'),
+(10, 'C1', 1, 2, 1, 0, '2017-12-04 07:19:50', '0000-00-00 00:00:00'),
+(11, 'C2', 1, 2, 1, 0, '2017-12-04 07:19:53', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -258,11 +273,17 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`id`, `name`, `user_name`, `email`, `mobile`, `password`, `role_id`, `status`, `deleted`, `created_by`, `updated_by`, `create_time`, `update_time`) VALUES
-(1, 'admin', 'admin', 'admin@kastech.com', '', '$2y$10$WQQRBQDkxV/98bqK.24Dp.uMVS6KcztVqdwwTrOBLIWLSeSqE2gii', 1, 1, 2, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(1, 'Dsad', 'admin', 'admin@kastech.com', '', '$2y$10$.vh0nF8hsjiKGms8sRC1fewLlj5JEyFBs.XqN94TvzQmyODcSWpgO', 1, 1, 2, 1, 1, '0000-00-00 00:00:00', '2017-12-04 04:14:06'),
 (2, 'Dasdasd', '', 'test.webap1@gmail.com', '1234567891', '$2y$10$nbtypL49eO.BqGbts3oZeu/c/zTc5GhOpB/Gmq5lE4UWoBcvyM1jG', 2, 2, 1, 1, 1, '2017-12-02 15:39:38', '2017-12-02 16:01:51'),
-(3, 'Test', '', 'test.webap@gmail.com', '22', '$2y$10$b4l13VXp/dlOTPbB2phvW.EgUiG/JJFQKJ40dFPHayq.DySCPTRua', 2, 2, 2, 1, 0, '2017-12-02 16:02:20', '0000-00-00 00:00:00'),
-(4, 'Test', '', 'jobseeker@touba.com', '1234567891', '$2y$10$i1ksEF1ynObyRGWJ.Iw6ku9MkKgTen4nxRnzjKNX1Eh99IzhZn.Ye', 3, 2, 2, 1, 0, '2017-12-02 16:19:06', '0000-00-00 00:00:00'),
-(5, 'Test', '', 'test.webap3@gmail.com', '1234567891', '$2y$10$UE5faz6xdq8C5j1uLdgcfOJfzOCoH1r0v58CyUi/AcngYZk5wGjQq', 2, 2, 2, 1, 5, '2017-12-02 17:24:00', '2017-12-02 17:25:12');
+(3, 'Test1', '', 'test.webap@gmail.com', '1234567891', '$2y$10$b4l13VXp/dlOTPbB2phvW.EgUiG/JJFQKJ40dFPHayq.DySCPTRua', 2, 1, 2, 1, 1, '2017-12-02 16:02:20', '2017-12-04 04:02:57'),
+(4, 'Test2', '', 'jobseeker@touba.com', '1234567891', '$2y$10$i1ksEF1ynObyRGWJ.Iw6ku9MkKgTen4nxRnzjKNX1Eh99IzhZn.Ye', 3, 2, 2, 1, 1, '2017-12-02 16:19:06', '2017-12-03 12:05:06'),
+(5, 'Test', '', 'test.webap3@gmail.com', '1234567891', '$2y$10$UE5faz6xdq8C5j1uLdgcfOJfzOCoH1r0v58CyUi/AcngYZk5wGjQq', 2, 2, 2, 1, 1, '2017-12-02 17:24:00', '2017-12-03 18:41:26'),
+(6, 'Anil', '', 'anil@mail.com', '1234567891', '$2y$10$hzgUiQnfweHpU1cGfQ7e0.YpkjX/WxqiXlUlC9QSSeihH/7ZJcOU6', 2, 2, 1, 0, 1, '2017-12-03 13:28:50', '2017-12-04 04:16:30'),
+(7, 'Dsada', '', 'adsada@dsfs.com', '1234567891', '$2y$10$OVcWyDMp0DUKx7PLKQqXR.pJu0fzAvBIjml3zzXJk/vN8Oguuofe.', 2, 2, 1, 0, 1, '2017-12-03 13:33:02', '2017-12-04 06:10:29'),
+(8, 'Anil', '', 'test@mail.com', '1234567891', '$2y$10$xGDbUZ2eKzPRcy3Wx0FiCOMB9QRsSOBcZyhV.ETPMbLHTpJ/pc9Im', 2, 2, 1, 0, 1, '2017-12-03 13:33:57', '2017-12-04 04:16:47'),
+(9, 'Dasdas', '', 'dasda@dsada.com', '1234567891', '$2y$10$xy5PZYchw55UZStufZHav.egjumXLcyJRsX8A4s7.QRgbNm.peDye', 3, 2, 2, 0, 0, '2017-12-03 13:34:24', '0000-00-00 00:00:00'),
+(10, 'Dsadas', '', 't1@mail.com', '1234567891', '$2y$10$xy5PZYchw55UZStufZHav.egjumXLcyJRsX8A4s7.QRgbNm.peDye', 2, 1, 2, 0, 0, '2017-12-03 13:37:56', '0000-00-00 00:00:00'),
+(14, 'U1', '', 'u1@mail.com', '1234567891', '$2y$10$4z.7Sjy4jn.u1Sjw.b.mN.7ffYL7w9cJLfJSmR6Or8/OXPUalp48e', 2, 2, 2, 1, 0, '2017-12-04 07:26:42', '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -357,67 +378,56 @@ ALTER TABLE `t_user` ADD FULLTEXT KEY `name_3` (`name`);
 --
 ALTER TABLE `t_city`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_country`
 --
 ALTER TABLE `t_country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `t_discipline`
 --
 ALTER TABLE `t_discipline`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_job`
 --
 ALTER TABLE `t_job`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_jobseeker_saved_applied_jobs`
 --
 ALTER TABLE `t_jobseeker_saved_applied_jobs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_job_type`
 --
 ALTER TABLE `t_job_type`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_recruiter_save_jobseeker`
 --
 ALTER TABLE `t_recruiter_save_jobseeker`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_reset_password`
 --
 ALTER TABLE `t_reset_password`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `t_role`
 --
 ALTER TABLE `t_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
 --
 -- AUTO_INCREMENT for table `t_state`
 --
 ALTER TABLE `t_state`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
@@ -461,7 +471,6 @@ ALTER TABLE `t_state`
 --
 ALTER TABLE `t_user`
   ADD CONSTRAINT `FK_UserRole` FOREIGN KEY (`role_id`) REFERENCES `t_role` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
