@@ -19,29 +19,28 @@ class Discipline extends BaseController
         parent::__construct();
         $this->load->model('discipline_model');
         $this->isLoggedIn(); 
-        
     }
     
-    /**
-     * This function used to load the first screen of the user
-     */
-    public function index()
-    {
-         if($this->isAdmin() == TRUE)
+        /**
+         * This function used to load the first screen of the user
+         */
+        public function index()
         {
-            $this->loadThis();
+             if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2 )
+            {
+                $this->loadThis();
+            }
+            $this->disciplineListing();
+            
         }
-        $this->global['pageTitle'] = 'Touba : Dashboard';
-        
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
-    }
     
     /**
      * This function is used to load the discipline list
      */
     function disciplineListing()
-    {
-        if($this->isAdmin() == TRUE)
+    {    
+       
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2 )
         {
             $this->loadThis();
         }
@@ -70,7 +69,7 @@ class Discipline extends BaseController
      */
     function addNew()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             $this->loadThis();
         }
@@ -91,7 +90,7 @@ class Discipline extends BaseController
      */
     function addNewDiscipline()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             $this->loadThis();
         }
@@ -135,7 +134,7 @@ class Discipline extends BaseController
      */
     function editOld($disciplineId = NULL)
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             $this->loadThis();
         }
@@ -161,7 +160,7 @@ class Discipline extends BaseController
      */
     function editDiscipline()
     {
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             $this->loadThis();
         }
@@ -209,7 +208,7 @@ class Discipline extends BaseController
     function deleteDiscipline()
     {
  
-        if($this->isAdmin() == TRUE)
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             echo(json_encode(array('status'=>'access')));
         

@@ -27,13 +27,7 @@
     <script type="text/javascript">
         var baseURL = "<?php echo base_url(); ?>";
     </script>
-    
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+   
   </head>
   <body class="skin-blue sidebar-mini">
     <div class="wrapper">
@@ -118,22 +112,23 @@
                 <span>Cities</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>userListing">
+                <i class="fa fa-users"></i>
+                <span>Users</span>
+              </a>
+            </li>
+         
+            <?php
+            }
+            if($role == ROLE_ADMIN || $role == ROLE_JOBPROVIDER)
+            {
+            ?>
             
             <li class="treeview">
               <a href="<?php echo base_url(); ?>admin/discipline/disciplineListing" >
                 <i class="fa fa-ticket"></i>
                 <span>Disciplines</span>
-              </a>
-            </li>
-            <?php
-            }
-            if($role == ROLE_ADMIN)
-            {
-            ?>
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>userListing">
-                <i class="fa fa-users"></i>
-                <span>Users</span>
               </a>
             </li>
             <?php
