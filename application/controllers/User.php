@@ -54,8 +54,8 @@ class User extends BaseController
             
             $returns = $this->paginationCompress ( "userListing/", $count, 5, SEGMENT );
             
-            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
-            
+            $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["offset"]);
+      
             $this->global['pageTitle'] = 'Touba : Job providers and Job Seeker Listing';
             $this->loadViews("users", $this->global, $data, NULL);
         }

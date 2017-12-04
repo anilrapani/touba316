@@ -96,4 +96,4 @@ if(!empty($countryInfo))
     </section>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/admin/editCountry.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/admin/country.js" type="text/javascript"></script>

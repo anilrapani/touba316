@@ -102,20 +102,27 @@
             ?>
             <li class="treeview">
               <a href="<?php echo base_url(); ?>admin/country/countryListing" >
-                <i class="fa fa-plane"></i>
+                <i class="fa fa-ticket"></i>
                 <span>Countries</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>states" >
+              <a href="<?php echo base_url(); ?>admin/state/stateListing" >
                 <i class="fa fa-ticket"></i>
                 <span>States</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>cities" >
+              <a href="<?php echo base_url(); ?>admin/city/cityListing" >
                 <i class="fa fa-ticket"></i>
                 <span>Cities</span>
+              </a>
+            </li>
+            
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>admin/discipline/disciplineListing" >
+                <i class="fa fa-ticket"></i>
+                <span>Disciplines</span>
               </a>
             </li>
             <?php

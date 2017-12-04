@@ -9,7 +9,7 @@ require APPPATH . '/libraries/BaseController.php';
  * @version : 
  */
 
-class Country extends BaseController
+class State extends BaseController
 {
     /**
      * This is default constructor of the class
@@ -17,13 +17,13 @@ class Country extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('country_model');
+        $this->load->model('state_model');
         $this->isLoggedIn(); 
         
     }
     
     /**
-     * This function used to load the first screen of the user
+     * This function used to load the first screen of the state
      */
     public function index()
     {
@@ -37,9 +37,9 @@ class Country extends BaseController
     }
     
     /**
-     * This function is used to load the country list
+     * This function is used to load the state list
      */
-    function countryListing()
+    function stateListing()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -47,20 +47,20 @@ class Country extends BaseController
         }
         else
         {
-            $this->load->model('country_model');
+            $this->load->model('state_model');
         
             $searchText = $this->input->post('searchText');
             $data['searchText'] = $searchText;
             
-            $count = $this->country_model->countryListingCount($searchText);
+            $count = $this->state_model->stateListingCount($searchText);
             $segment = 4;
-            $returns = $this->paginationCompress( "admin/country/countryListing/", $count, 5, $segment );
+            $returns = $this->paginationCompress( "admin/state/stateListing/", $count, 5, $segment );
             
             
-            $data['countryRecords'] = $this->country_model->countryListing($searchText, $returns['page'], $returns['offset']);
+            $data['stateRecords'] = $this->state_model->stateListing($searchText, $returns['page'], $returns['offset']);
             
-            $this->global['pageTitle'] = 'Touba : Country Listing';
-            $this->loadViews("admin/country/countries", $this->global, $data, NULL);
+            $this->global['pageTitle'] = 'Touba : State Listing';
+            $this->loadViews("admin/state/states", $this->global, $data, NULL);
         }
     }
 
@@ -77,10 +77,13 @@ class Country extends BaseController
         else
         {
             $this->load->model('country_model');
-            $data = array();
-            $this->global['pageTitle'] = 'Touba : Add New Country';
+            $data['countries'] = $this->country_model->getCountryList();
+            
+            $this->load->model('state_model');
+            
+            $this->global['pageTitle'] = 'Touba : Add New State';
 
-            $this->loadViews("admin/country/addNew", $this->global, $data, NULL);
+            $this->loadViews("admin/state/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -89,7 +92,7 @@ class Country extends BaseController
     /**
      * This function is used to add new user to the system
      */
-    function addNewCountry()
+    function addNewState()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -100,6 +103,7 @@ class Country extends BaseController
             $this->load->library('form_validation');
             
             $this->form_validation->set_rules('name','Name','trim|required|max_length[128]');
+            $this->form_validation->set_rules('country','Country','trim|required|max_length[128]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -108,32 +112,33 @@ class Country extends BaseController
             else
             {
                 $name = ucwords(strtolower($this->input->post('name')));
+                $country = $this->input->post('country');
                 
-                $countryInfo = array('name'=> $name, 'status'=> 1, 'deleted'=> 2, 'created_by'=>$this->vendorId, 'create_time'=>date('Y-m-d H:i:s'));
+                $stateInfo = array('name'=> $name, 'country_id' => $country, 'status'=> 1, 'deleted'=> 2, 'created_by'=>$this->vendorId, 'create_time'=>date('Y-m-d H:i:s'));
                 
-                $this->load->model('country_model');
-                $result = $this->country_model->addNewCountry($countryInfo);
+                $this->load->model('state_model');
+                $result = $this->state_model->addNewState($stateInfo);
                 
                 if($result > 0)
                 {
-                    $this->session->set_flashdata('success', 'New Country created successfully');
+                    $this->session->set_flashdata('success', 'New State created successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Country creation failed');
+                    $this->session->set_flashdata('error', 'State creation failed');
                 }
                 
-                redirect('admin/Country/addNew');
+                redirect('admin/State/addNew');
             }
         }
     }
 
     
     /**
-     * This function is used load country edit information
-     * @param number $countryId : Optional : This is country id
+     * This function is used load state edit information
+     * @param number $stateId : Optional : This is state id
      */
-    function editOld($countryId = NULL)
+    function editOld($stateId = NULL)
     {
         if($this->isAdmin() == TRUE)
         {
@@ -141,25 +146,27 @@ class Country extends BaseController
         }
         else
         {
-            if($countryId == null)
+            if($stateId == null)
             {
-                redirect('admin/country/countryListing');
+                redirect('admin/state/stateListing');
             }
             
+            $this->load->model('country_model');
+            $data['countries'] = $this->country_model->getCountryList();
             
-            $data['countryInfo'] = $this->country_model->getCountryInfo($countryId);
+            $data['stateInfo'] = $this->state_model->getStateInfo($stateId);
             
-            $this->global['pageTitle'] = 'Touba : Edit Country';
+            $this->global['pageTitle'] = 'Touba : Edit State';
             
-            $this->loadViews("admin/country/editOld", $this->global, $data, NULL);
+            $this->loadViews("admin/state/editOld", $this->global, $data, NULL);
         }
     }
     
     
     /**
-     * This function is used to edit the country information
+     * This function is used to edit the state information
      */
-    function editCountry()
+    function editState()
     {
         if($this->isAdmin() == TRUE)
         {
@@ -169,44 +176,45 @@ class Country extends BaseController
         {
             $this->load->library('form_validation');
             
-            $countryId = $this->input->post('id');
+            $stateId = $this->input->post('id');
             
             $this->form_validation->set_rules('name','Name','trim|required|max_length[128]');
+            $this->form_validation->set_rules('country_id','Country','trim|required|max_length[128]');
             
             if($this->form_validation->run() == FALSE)
             {
-                $this->editOld($countryId);
+                $this->editOld($stateId);
             }
             else
             {
                 $name = ucwords(strtolower($this->input->post('name')));
+                $country_id = $this->input->post('country_id');
                 
-                $countryInfo = array();
                 
-                $countryInfo = array('name'=>$name, 'updated_by'=>$this->vendorId, 'update_time'=>date('Y-m-d H:i:s'));
+                $stateInfo = array('name'=>$name, 'country_id'=>$country_id, 'updated_by'=>$this->vendorId, 'update_time'=>date('Y-m-d H:i:s'));
                 
-                $result = $this->country_model->editCountry($countryInfo, $countryId);
+                $result = $this->state_model->editState($stateInfo, $stateId);
                 
                 if($result == true)
                 {
-                    $this->session->set_flashdata('success', 'country updated successfully');
+                    $this->session->set_flashdata('success', 'state updated successfully');
                 }
                 else
                 {
-                    $this->session->set_flashdata('error', 'Country updation failed');
+                    $this->session->set_flashdata('error', 'State updation failed');
                 }
                 
-                redirect('admin/country/countryListing');
+                redirect('admin/state/stateListing');
             }
         }
     }
 
 
     /**
-     * This function is used to delete the country using id
+     * This function is used to delete the state using id
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteCountry()
+    function deleteState()
     {
  
         if($this->isAdmin() == TRUE)
@@ -219,7 +227,7 @@ class Country extends BaseController
             $id = $this->input->post('id');
             $data = array('deleted'=>1,'updated_by'=>$this->vendorId, 'update_time'=>date('Y-m-d H:i:s'));
            
-            $result = $this->country_model->deleteCountry($id, $data);
+            $result = $this->state_model->deleteState($id, $data);
             if ($result > 0) { echo(json_encode(array('status'=>TRUE))); }
             else { echo(json_encode(array('status'=>FALSE))); }
         }

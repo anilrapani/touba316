@@ -1,9 +1,10 @@
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Country Management
-        <small>Add / Edit Country</small>
+        <i class="fa fa-users"></i> State Management
+        <small>Add / Edit State</small>
       </h1>
     </section>
     
@@ -18,11 +19,11 @@
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Country Details</h3>
+                        <h3 class="box-title">Enter State Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addCountry" action="<?php echo base_url() ?>admin/country/addNewCountry" method="post" role="form">
+                    <form role="form" id="addState" action="<?php echo base_url() ?>admin/state/addNewState" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -33,8 +34,26 @@
                                     
                                 </div>
                                 
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="country">Country</label>
+                                        <select class="form-control required" id="country" name="country">
+                                            <option value="0">Select Country</option>
+                                            <?php
+                                            if(!empty($countries))
+                                            {
+                                                foreach ($countries as $rl)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $rl->id ?>"><?php echo $rl->name ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
-                            
                             
                             
                         </div><!-- /.box-body -->
@@ -79,4 +98,4 @@
     </section>
     
 </div>
-<script src="<?php echo base_url(); ?>assets/js/admin/country.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/admin/state.js" type="text/javascript"></script>

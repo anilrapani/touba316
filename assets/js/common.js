@@ -56,6 +56,80 @@ jQuery(document).ready(function(){
 	});
 	
         
+        
+         jQuery(document).on("click", ".deleteState", function(){
+		var id = $(this).data("id"),
+			hitURL = baseURL + "admin/state/deleteState",
+			currentRow = $(this);
+		
+		var confirmation = confirm("Are you sure to delete this State ?");
+		
+		if(confirmation)
+		{
+			jQuery.ajax({
+			type : "POST",
+			dataType : "json",
+			url : hitURL,
+			data : { id : id } 
+			}).done(function(data){
+				console.log(data);
+				currentRow.parents('tr').remove();
+				if(data.status = true) { alert("State successfully deleted"); }
+				else if(data.status = false) { alert("State deletion failed"); }
+				else { alert("Access denied..!"); }
+			});
+		}
+	});
+        
+        
+         jQuery(document).on("click", ".deleteCity", function(){
+		var id = $(this).data("id"),
+			hitURL = baseURL + "admin/city/deleteCity",
+			currentRow = $(this);
+		
+		var confirmation = confirm("Are you sure to delete this City ?");
+		
+		if(confirmation)
+		{
+			jQuery.ajax({
+			type : "POST",
+			dataType : "json",
+			url : hitURL,
+			data : { id : id } 
+			}).done(function(data){
+				console.log(data);
+				currentRow.parents('tr').remove();
+				if(data.status = true) { alert("City successfully deleted"); }
+				else if(data.status = false) { alert("City deletion failed"); }
+				else { alert("Access denied..!"); }
+			});
+		}
+	});
+        
+        
+        jQuery(document).on("click", ".deleteDiscipline", function(){
+		var id = $(this).data("id"),
+			hitURL = baseURL + "admin/discipline/deleteDiscipline",
+			currentRow = $(this);
+		
+		var confirmation = confirm("Are you sure to delete this Discipline ?");
+		
+		if(confirmation)
+		{
+			jQuery.ajax({
+			type : "POST",
+			dataType : "json",
+			url : hitURL,
+			data : { id : id } 
+			}).done(function(data){
+				console.log(data);
+				currentRow.parents('tr').remove();
+				if(data.status = true) { alert("Discipline successfully deleted"); }
+				else if(data.status = false) { alert("Discipline deletion failed"); }
+				else { alert("Access denied..!"); }
+			});
+		}
+	});
 	
 	
 	jQuery(document).on("click", ".searchList", function(){

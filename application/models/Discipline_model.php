@@ -1,16 +1,16 @@
 <?php if(!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Country_model extends CI_Model
+class Discipline_model extends CI_Model
 {
     /**
-     * This function is used to get the country listing count
+     * This function is used to get the discipline listing count
      * @param string $searchText : This is optional search text
      * @return number $count : This is row count
      */
-    function countryListingCount($searchText = '')
+    function disciplineListingCount($searchText = '')
     {
         $this->db->select('BaseTbl.id, BaseTbl.name, BaseTbl.status');
-        $this->db->from('t_country as BaseTbl');
+        $this->db->from('t_discipline as BaseTbl');
         if(!empty($searchText)) {
             $likeCriteria = "(BaseTbl.name  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
@@ -22,16 +22,16 @@ class Country_model extends CI_Model
     }
     
     /**
-     * This function is used to get the country listing count
+     * This function is used to get the discipline listing count
      * @param string $searchText : This is optional search text
      * @param number $page : This is pagination offset
      * @param number $segment : This is pagination limit
      * @return array $result : This is result
      */
-    function countryListing($searchText = '', $page, $segment)
+    function disciplineListing($searchText = '', $page, $segment)
     {
         $this->db->select('BaseTbl.id, BaseTbl.name, BaseTbl.status');
-        $this->db->from('t_country as BaseTbl');
+        $this->db->from('t_discipline as BaseTbl');
         if(!empty($searchText)) {
             $likeCriteria = "(BaseTbl.name  LIKE '%".$searchText."%')";
             $this->db->where($likeCriteria);
@@ -45,13 +45,13 @@ class Country_model extends CI_Model
     }
     
     /**
-     * This function is used to add new country to system
+     * This function is used to add new discipline to system
      * @return number $insert_id : This is last inserted id
      */
-    function addNewCountry($userInfo)
+    function addNewDiscipline($userInfo)
     {
         $this->db->trans_start();
-        $this->db->insert('t_country', $userInfo);
+        $this->db->insert('t_discipline', $userInfo);
         
         $insert_id = $this->db->insert_id();
         
@@ -61,14 +61,14 @@ class Country_model extends CI_Model
     }
     
     /**
-     * This function used to get country information by id
-     * @param number $id : This is country id
-     * @return array $result : This is country information
+     * This function used to get discipline information by id
+     * @param number $id : This is discipline id
+     * @return array $result : This is discipline information
      */
-    function getCountryInfo($id)
+    function getDisciplineInfo($id)
     {
         $this->db->select('id, name');
-        $this->db->from('t_country');
+        $this->db->from('t_discipline');
         $this->db->where(array('deleted'=>2));
         $query = $this->db->get();
         return $query->result();
@@ -76,14 +76,14 @@ class Country_model extends CI_Model
     
     
     /**
-     * This function is used to update the country information
-     * @param array $data : This is country's updated information
-     * @param number $id : This is country id
+     * This function is used to update the discipline information
+     * @param array $data : This is discipline's updated information
+     * @param number $id : This is discipline id
      */
-    function editCountry($data, $id)
+    function editDiscipline($data, $id)
     {
         $this->db->where('id', $id);
-        $this->db->update('t_country', $data);
+        $this->db->update('t_discipline', $data);
         
         return TRUE;
     }
@@ -91,14 +91,14 @@ class Country_model extends CI_Model
     
     
     /**
-     * This function is used to delete the country information
-     * @param number $id : This is country id
+     * This function is used to delete the discipline information
+     * @param number $id : This is discipline id
      * @return boolean $result : TRUE / FALSE
      */
-    function deleteCountry($id, $data)
+    function deleteDiscipline($id, $data)
     {
         $this->db->where('id', $id);
-        $this->db->update('t_country', $data);
+        $this->db->update('t_discipline', $data);
         
         return $this->db->affected_rows();
     }
@@ -107,10 +107,10 @@ class Country_model extends CI_Model
      * This function is used to get the countries information
      * @return array $result : This is result of the query
      */
-    function getCountryList()
+    function getDisciplineList()
     {
         $this->db->select('id, name, status');
-        $this->db->from('t_country');
+        $this->db->from('t_discipline');
         $query = $this->db->get();
         $this->db->where(array('deleted'=>2));
         return $query->result();

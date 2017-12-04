@@ -2,8 +2,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Country Management
-        <small>Add / Edit Country</small>
+        <i class="fa fa-users"></i> Discipline Management
+        <small>Add / Edit Discipline</small>
       </h1>
     </section>
     
@@ -18,11 +18,11 @@
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter Country Details</h3>
+                        <h3 class="box-title">Enter Discipline Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" id="addCountry" action="<?php echo base_url() ?>admin/country/addNewCountry" method="post" role="form">
+                    <form role="form" id="addDiscipline" action="<?php echo base_url() ?>admin/discipline/addNewDiscipline" method="post" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -79,4 +79,4 @@
     </section>
     
 </div>
-<script src="<?php echo base_url(); ?>assets/js/admin/country.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/admin/discipline.js" type="text/javascript"></script>

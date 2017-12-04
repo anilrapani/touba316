@@ -17,10 +17,6 @@ class BaseController extends CI_Controller {
 	protected $global = array ();
 	
         
-        
-         function __construct() {
-         $this->ci =& get_instance();
-    }
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
 	 *
@@ -111,8 +107,8 @@ class BaseController extends CI_Controller {
         $this->load->view($viewName, $pageInfo);
         $this->load->view('includes/footer', $footerInfo);
     }
-	
-	/**
+	 
+        /**
 	 * This function used provide the pagination resources
 	 * @param {string} $link : This is page link
 	 * @param {number} $count : This is page count
@@ -120,7 +116,7 @@ class BaseController extends CI_Controller {
 	 * @return {mixed} $result : This is array of records and pagination data
 	 */
 	function paginationCompress($link, $count, $perPage = 10, $segment) {
-		$this->load->library ( 'pagination' );
+                $this->load->library ( 'pagination' );
                 $segment_const = (isset($segment) && !empty($segment))?$segment:SEGMENT;
 		$config ['base_url'] = base_url () . $link;
 		$config ['total_rows'] = $count;
@@ -145,34 +141,27 @@ class BaseController extends CI_Controller {
 		$config ['last_tag_open'] = '<li class="arrow">';
 		$config ['last_link'] = 'Last';
 		$config ['last_tag_close'] = '</li>';
-	
+                $config['use_page_numbers'] = TRUE;
+                
 		$this->pagination->initialize ( $config );
 		$page = $config ['per_page'];
 		$segment = $this->uri->segment ( $segment_const );
 	
+                $offset = 0;
+                if($segment == ''){
+                    $offset = 0;
+                }else{
+                    $offset = ($segment -1)*$page;
+                }
+                
 		return array (
 				"page" => $page,
-				"segment" => $segment
+				"offset" => $offset
 		);
 	}
         
         
         
-          public function initPagination($base_url,$total_rows){
-        $config['per_page']          = 1;
-        $config['uri_segment']       = 3;
-        $config['base_url']          = base_url().$base_url;
-        $config['total_rows']        = $total_rows;
-        $config['use_page_numbers']  = TRUE;
         
-        $config['first_tag_open'] = $config['last_tag_open']= $config['next_tag_open']= $config['prev_tag_open'] = $config['num_tag_open'] = '';
-        $config['first_tag_close'] = $config['last_tag_close']= $config['next_tag_close']= $config['prev_tag_close'] = $config['num_tag_close'] = '';
-        
-        $config['cur_tag_open'] = "";
-        $config['cur_tag_close'] = "";
-        
-        $this->ci->pagination->initialize($config);
-        return $config;    
-    }
         
 }
