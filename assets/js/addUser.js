@@ -5,7 +5,7 @@
  * 
  * Using validation plugin : jquery.validate.js
  * 
- * @author Kishor Mali
+ * @author Anil Rapani
  */
 
 $(document).ready(function(){

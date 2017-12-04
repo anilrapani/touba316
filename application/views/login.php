@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>CodeInsect | Admin System Log in</title>
+    <title>Touba | Admin System Log in</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -18,10 +18,10 @@
   <body class="login-page">
     <div class="login-box">
       <div class="login-logo">
-<!--        <a href="#"><b>CodeInsect</b><br>Admin System</a>-->
+        <a href="#"><b>Touba</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Sign In</p>
+        <p class="login-box-msg">Login</p>
         <?php $this->load->helper('form'); ?>
         <div class="row">
             <div class="col-md-12">
@@ -72,7 +72,8 @@
           </div>
         </form>
 
-        <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a><br>
+<!--        <a href="<?php echo base_url() ?>forgotPassword">Forgot Password</a><br>-->
+        <a href="<?php echo base_url() ?>registerNow">Not yet registered?</a><br>
         
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->

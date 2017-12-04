@@ -53,13 +53,17 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
+$route['register'] = "register/addNew";
+$route['registerNow'] = "register/registerNewUser";
 $route['loginMe'] = 'login/loginMe';
 $route['dashboard'] = 'user';
 $route['logout'] = 'user/logout';
 $route['userListing'] = 'user/userListing';
 $route['userListing/(:num)'] = "user/userListing/$1";
 $route['addNew'] = "user/addNew";
+$route['admin/country/editOld/(:num)'] = "admin/country/editOld/$1";
+
+
 
 $route['addNewUser'] = "user/addNewUser";
 $route['editOld'] = "user/editOld";

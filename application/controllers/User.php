@@ -27,8 +27,9 @@ class User extends BaseController
     public function index()
     {
         $this->global['pageTitle'] = 'Touba : Dashboard';
-        
-        $this->loadViews("dashboard", $this->global, NULL , NULL);
+        $count = $this->user_model->userListingCount();
+        $data['userCount'] = $count;
+        $this->loadViews("dashboard", $this->global, $data , NULL);
     }
     
     /**
@@ -51,7 +52,7 @@ class User extends BaseController
             
             $count = $this->user_model->userListingCount($searchText);
             
-			$returns = $this->paginationCompress ( "userListing/", $count, 5 );
+            $returns = $this->paginationCompress ( "userListing/", $count, 5, SEGMENT );
             
             $data['userRecords'] = $this->user_model->userListing($searchText, $returns["page"], $returns["segment"]);
             
@@ -87,13 +88,13 @@ class User extends BaseController
     {
         $userId = $this->input->post("userId");
         $email = $this->input->post("email");
-
+        
         if(empty($userId)){
             $result = $this->user_model->checkEmailExists($email);
         } else {
             $result = $this->user_model->checkEmailExists($email, $userId);
         }
-
+        
         if(empty($result)){ echo("true"); }
         else { echo("false"); }
     }
@@ -171,7 +172,7 @@ class User extends BaseController
             $data['roles'] = $this->user_model->getUserRoles();
             $data['userInfo'] = $this->user_model->getUserInfo($userId);
             
-            $this->global['pageTitle'] = 'CodeInsect : Edit User';
+            $this->global['pageTitle'] = 'Touba : Edit User';
             
             $this->loadViews("editOld", $this->global, $data, NULL);
         }
@@ -193,12 +194,12 @@ class User extends BaseController
             
             $userId = $this->input->post('userId');
             
-            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]|xss_clean');
-            $this->form_validation->set_rules('email','Email','trim|required|valid_email|xss_clean|max_length[128]');
+            $this->form_validation->set_rules('fname','Full Name','trim|required|max_length[128]');
+            $this->form_validation->set_rules('email','Email','trim|required|valid_email|max_length[128]');
             $this->form_validation->set_rules('password','Password','matches[cpassword]|max_length[20]');
             $this->form_validation->set_rules('cpassword','Confirm Password','matches[password]|max_length[20]');
             $this->form_validation->set_rules('role','Role','trim|required|numeric');
-            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]|xss_clean');
+            $this->form_validation->set_rules('mobile','Mobile Number','required|min_length[10]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -216,14 +217,14 @@ class User extends BaseController
                 
                 if(empty($password))
                 {
-                    $userInfo = array('email'=>$email, 'roleId'=>$roleId, 'name'=>$name,
-                                    'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 'updatedDtm'=>date('Y-m-d H:i:s'));
+                    $userInfo = array('email'=>$email, 'role_id'=>$roleId, 'name'=>$name,
+                                    'mobile'=>$mobile, 'updated_by'=>$this->vendorId, 'update_time'=>date('Y-m-d H:i:s'));
                 }
                 else
                 {
-                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'roleId'=>$roleId,
-                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updatedBy'=>$this->vendorId, 
-                        'updatedDtm'=>date('Y-m-d H:i:s'));
+                    $userInfo = array('email'=>$email, 'password'=>getHashedPassword($password), 'role_id'=>$roleId,
+                        'name'=>ucwords($name), 'mobile'=>$mobile, 'updated_by'=>$this->vendorId, 
+                        'update_time'=>date('Y-m-d H:i:s'));
                 }
                 
                 $result = $this->user_model->editUser($userInfo, $userId);
@@ -272,7 +273,7 @@ class User extends BaseController
      */
     function loadChangePass()
     {
-        $this->global['pageTitle'] = 'CodeInsect : Change Password';
+        $this->global['pageTitle'] = 'Touba : Change Password';
         
         $this->loadViews("changePassword", $this->global, NULL, NULL);
     }
@@ -322,7 +323,7 @@ class User extends BaseController
 
     function pageNotFound()
     {
-        $this->global['pageTitle'] = 'CodeInsect : 404 - Page Not Found';
+        $this->global['pageTitle'] = 'Touba : 404 - Page Not Found';
         
         $this->loadViews("404", $this->global, NULL, NULL);
     }

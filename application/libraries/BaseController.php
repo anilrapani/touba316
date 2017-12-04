@@ -16,6 +16,11 @@ class BaseController extends CI_Controller {
 	protected $roleText = '';
 	protected $global = array ();
 	
+        
+        
+         function __construct() {
+         $this->ci =& get_instance();
+    }
 	/**
 	 * Takes mixed data and optionally a status code, then creates the response
 	 *
@@ -65,7 +70,7 @@ class BaseController extends CI_Controller {
 	 * This function is used to check the access
 	 */
 	function isTicketter() {
-		if ($this->role != ROLE_ADMIN || $this->role != ROLE_MANAGER) {
+		if ($this->role != ROLE_ADMIN || $this->role != ROLE_JOBPROVIDER) {
 			return true;
 		} else {
 			return false;
@@ -76,7 +81,7 @@ class BaseController extends CI_Controller {
 	 * This function is used to load the set of views
 	 */
 	function loadThis() {
-		$this->global ['pageTitle'] = 'CodeInsect : Access Denied';
+		$this->global ['pageTitle'] = 'Touba : Access Denied';
 		
 		$this->load->view ( 'includes/header', $this->global );
 		$this->load->view ( 'access' );
@@ -114,12 +119,12 @@ class BaseController extends CI_Controller {
 	 * @param {number} $perPage : This is records per page limit
 	 * @return {mixed} $result : This is array of records and pagination data
 	 */
-	function paginationCompress($link, $count, $perPage = 10) {
+	function paginationCompress($link, $count, $perPage = 10, $segment) {
 		$this->load->library ( 'pagination' );
-	
+                $segment_const = (isset($segment) && !empty($segment))?$segment:SEGMENT;
 		$config ['base_url'] = base_url () . $link;
 		$config ['total_rows'] = $count;
-		$config ['uri_segment'] = SEGMENT;
+		$config ['uri_segment'] = $segment_const;
 		$config ['per_page'] = $perPage;
 		$config ['num_links'] = 5;
 		$config ['full_tag_open'] = '<nav><ul class="pagination">';
@@ -143,11 +148,31 @@ class BaseController extends CI_Controller {
 	
 		$this->pagination->initialize ( $config );
 		$page = $config ['per_page'];
-		$segment = $this->uri->segment ( SEGMENT );
+		$segment = $this->uri->segment ( $segment_const );
 	
 		return array (
 				"page" => $page,
 				"segment" => $segment
 		);
 	}
+        
+        
+        
+          public function initPagination($base_url,$total_rows){
+        $config['per_page']          = 1;
+        $config['uri_segment']       = 3;
+        $config['base_url']          = base_url().$base_url;
+        $config['total_rows']        = $total_rows;
+        $config['use_page_numbers']  = TRUE;
+        
+        $config['first_tag_open'] = $config['last_tag_open']= $config['next_tag_open']= $config['prev_tag_open'] = $config['num_tag_open'] = '';
+        $config['first_tag_close'] = $config['last_tag_close']= $config['next_tag_close']= $config['prev_tag_close'] = $config['num_tag_close'] = '';
+        
+        $config['cur_tag_open'] = "";
+        $config['cur_tag_close'] = "";
+        
+        $this->ci->pagination->initialize($config);
+        return $config;    
+    }
+        
 }

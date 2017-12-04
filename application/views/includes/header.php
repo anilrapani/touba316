@@ -12,6 +12,7 @@
     <link href="<?php echo base_url(); ?>assets/ionicframework/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/css/touba.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
     <link href="<?php echo base_url(); ?>assets/dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
@@ -43,7 +44,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>Touba</b></span>
           <!-- logo for regular state and mobile devices -->
-<!--          <span class="logo-lg"><b>CodeInsect</b>AS</span>-->
+<!--          <span class="logo-lg"><b>Touba</b>AS</span>-->
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -95,32 +96,26 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span></i>
               </a>
             </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-plane"></i>
-                <span>New Task</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-ticket"></i>
-                <span>My Tasks</span>
-              </a>
-            </li>
             <?php
-            if($role == ROLE_ADMIN || $role == ROLE_MANAGER)
+            if($role == ROLE_ADMIN)
             {
             ?>
             <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-thumb-tack"></i>
-                <span>Task Status</span>
+              <a href="<?php echo base_url(); ?>admin/country/countryListing" >
+                <i class="fa fa-plane"></i>
+                <span>Countries</span>
               </a>
             </li>
             <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-upload"></i>
-                <span>Task Uploads</span>
+              <a href="<?php echo base_url(); ?>states" >
+                <i class="fa fa-ticket"></i>
+                <span>States</span>
+              </a>
+            </li>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>cities" >
+                <i class="fa fa-ticket"></i>
+                <span>Cities</span>
               </a>
             </li>
             <?php
@@ -132,12 +127,6 @@
               <a href="<?php echo base_url(); ?>userListing">
                 <i class="fa fa-users"></i>
                 <span>Users</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="#" >
-                <i class="fa fa-files-o"></i>
-                <span>Reports</span>
               </a>
             </li>
             <?php

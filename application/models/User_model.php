@@ -114,9 +114,6 @@ class User_model extends CI_Model
 		$this->db->where('role_id !=', 1);
         $this->db->where('id', $userId);
         $query = $this->db->get();
-//        echo $this->db->last_query();
-//        exit;
-//        var_dump($query->result());exit;
         return $query->result();
     }
     

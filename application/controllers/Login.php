@@ -67,9 +67,9 @@ class Login extends CI_Controller
                  
             $email = $this->input->post('email');
             $password = $this->input->post('password');
-        
-            $result = $this->login_model->loginMe($email, $password);
             
+            $result = $this->login_model->loginMe($email, $password);
+            $userStatus = 2;
             if(count($result) > 0)
             {
                 foreach ($result as $res)
@@ -81,9 +81,17 @@ class Login extends CI_Controller
                                             'isLoggedIn' => TRUE
                                     );
                                     
-                    $this->session->set_userdata($sessionArray);
-                    redirect('/dashboard');
+                  $userStatus = $res->user_status;
+                    
                 }
+                
+                if($userStatus == 2){
+                    $this->session->set_flashdata('error', 'User is not activated!');
+                    redirect('/login');
+                }
+                
+                $this->session->set_userdata($sessionArray);
+                redirect('/dashboard');
             }
             else
             {

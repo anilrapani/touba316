@@ -19,7 +19,7 @@ class Login_model extends CI_Model
      */
     function loginMe($email, $password)
     {
-        $this->db->select('BaseTbl.id as user_id, BaseTbl.password, BaseTbl.name as user_name, BaseTbl.role_id, Roles.name as role_name');
+        $this->db->select('BaseTbl.id as user_id, BaseTbl.password, BaseTbl.name as user_name, BaseTbl.status as user_status, BaseTbl.role_id, Roles.name as role_name');
         $this->db->from('t_user as BaseTbl');
         $this->db->join('t_role as Roles','Roles.id = BaseTbl.role_id');
         $this->db->where('BaseTbl.email', $email);
@@ -37,6 +37,7 @@ class Login_model extends CI_Model
             return array();
         }
     }
+    
 
     /**
      * This function used to check email exists or not
