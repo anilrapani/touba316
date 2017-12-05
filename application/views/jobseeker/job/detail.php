@@ -1,14 +1,14 @@
 <?php
 
-$id = $name = $country_id = '';
-
-if(!empty($stateInfo))
+$id = $name = $job_type_name = $discipline_name = '';
+if(!empty($jobInfo))
 {
-    foreach ($stateInfo as $uf)
+    foreach ($jobInfo as $uf)
     {
         $id = $uf->id;
         $name = $uf->name;
-        $country_id = $uf->country_id;
+        $job_type_name = $uf->jobtype;
+        $discipline_name = $uf->discipline;
         
     }
 }
@@ -20,8 +20,8 @@ if(!empty($stateInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> State Management
-        <small>Add / Edit State</small>
+        <i class="fa fa-users"></i> Job Details
+        
       </h1>
     </section>
     
@@ -58,6 +58,9 @@ if(!empty($stateInfo))
             </div>
         </div>
         <div class="row">
+            
+            
+        
             <!-- left column -->
             <div class="col-md-8">
               <!-- general form elements -->
@@ -66,45 +69,37 @@ if(!empty($stateInfo))
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter State Details</h3>
+                        <h3 class="box-title"><?php echo $name; ?></h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>admin/state/editState" method="post" id="editState" role="form">
+                    <form role="form" action="<?php echo base_url() ?>job/save" method="post" id="editJob" role="form">
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-6">                                
-                                    <div class="form-group">
-                                        <label for="fname">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />    
+                                <div class="col-md-6">    
+                                    <div class="box box-default">
+                                    <div class="box-header ">
+                                        <h3 class="box-title"><span>Job Type : </span><?php echo $job_type_name; ?></h3>
+                                      <br><br>
+                                      <h3 class="box-title"><span>Discipline : </span><?php echo $discipline_name; ?></h3>
+                                      <input type="hidden" value="<?php echo $id; ?>" name="job_id" id="job_id" />    
                                     </div>
-                                     <div class="form-group">
-                                        <label for="role">Country</label>
-                                        <select class="form-control" id="country_id" name="country_id">
-                                            <option value="">Select Country</option>
-                                            <?php
-                                            if(!empty($countries))
-                                            {
-                                                foreach ($countries as $rl)
-                                                {
-                                                    ?>
-                                                    <option value="<?php echo $rl->id; ?>" <?php if($rl->id == $country_id) {echo "selected=selected";} ?>><?php echo $rl->name ?></option>
-                                                    <?php
-                                                }
-                                            }
-                                            ?>
-                                        </select>
+                                    <div class="box-body">
+                                      Description Goes here
                                     </div>
+                                    <!-- /.box-body -->
+                                  </div>
+                                     
                                 </div>
+                                
                                 
                             </div>
                             
                         </div><!-- /.box-body -->
     
                         <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
-                            <input type="reset" class="btn btn-default" value="Reset" />
+                            <input type="submit" class="btn btn-primary" value="Save" />
+                            <input type="submit" class="btn btn-primary" value="Apply" />
                         </div>
                     </form>
                 </div>
@@ -113,4 +108,5 @@ if(!empty($stateInfo))
         </div>    
     </section>
 </div>
-<script src="<?php echo base_url(); ?>assets/js/admin/state.js" type="text/javascript"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/jobprovider/job.js" type="text/javascript"></script>

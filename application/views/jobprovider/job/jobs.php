@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> City Management
+        <i class="fa fa-users"></i> Job Management
         <small></small>
       </h1>
     </section>
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-xs-12 text-right">
                 <div class="form-group">
-                    <a class="btn btn-primary" href="<?php echo base_url(); ?>admin/city/addNew"><i class="fa fa-plus"></i> Add New</a>
+                    <a class="btn btn-primary" href="<?php echo base_url(); ?>jobprovider/job/addNew"><i class="fa fa-plus"></i> Add New</a>
                 </div>
             </div>
         </div>
@@ -18,9 +18,9 @@
             <div class="col-xs-12">
               <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">City List</h3>
+                    <h3 class="box-title">Job List</h3>
                     <div class="box-tools">
-                        <form action="<?php echo base_url() ?>admin/city/cityListing" method="POST" id="searchList">
+                        <form action="<?php echo base_url() ?>admin/job/jobListing" method="POST" id="searchList">
                             <div class="input-group">
                               <input type="text" name="searchText" value="<?php echo $searchText; ?>" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
                               <div class="input-group-btn">
@@ -35,22 +35,25 @@
                     <tr>
                       <th>Id</th>
                       <th>Name</th>
-                      <th>Country</th>
+                      <th>Job Type</th>
+                      <th>Discipline</th>
                       <th class="text-center">Actions</th>
                     </tr>
                     <?php
-                    if(!empty($cityRecords))
+                    if(!empty($jobRecords))
                     {
-                        foreach($cityRecords as $record)
+                        foreach($jobRecords as $record)
                         {
                     ?>
                     <tr>
                       <td><?php echo $record->id ?></td>
                       <td><?php echo $record->name ?></td>
-                      <td><?php echo $record->statename ?></td>
+                      <td><?php echo $record->job_type_name ?></td>
+                      <td><?php echo $record->discipline_name ?></td>
                       <td class="text-center">
-                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'admin/city/editOld/'.$record->id; ?>"><i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-sm btn-danger deleteCity" href="#" data-id="<?php echo $record->id; ?>"><i class="fa fa-trash"></i></a>
+                        
+                          <a class="btn btn-sm btn-info" href="<?php echo base_url().'jobprovider/job/editOld/'.$record->id; ?>"><i class="fa fa-pencil"></i></a>
+                          <a class="btn btn-sm btn-danger deleteJob" href="#" data-id="<?php echo $record->id; ?>"><i class="fa fa-trash"></i></a>
                       </td>
                     </tr>
                     <?php

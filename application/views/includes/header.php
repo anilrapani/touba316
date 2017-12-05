@@ -95,23 +95,29 @@
             {
             ?>
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>admin/country/countryListing" >
-                <i class="fa fa-ticket"></i>
-                <span>Countries</span>
-              </a>
+              <a href="#"><span>Master Changes</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                            <li class="treeview">
+                            <a href="<?php echo base_url(); ?>admin/country/countryListing" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Countries</span>
+                            </a>
+                          </li>
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>admin/state/stateListing" >
+                              <i class="fa fa-ticket"></i>
+                              <span>States</span>
+                            </a>
+                          </li>
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>admin/city/cityListing" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Cities</span>
+                            </a>
+                          </li>
+              </ul>
             </li>
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>admin/state/stateListing" >
-                <i class="fa fa-ticket"></i>
-                <span>States</span>
-              </a>
-            </li>
-            <li class="treeview">
-              <a href="<?php echo base_url(); ?>admin/city/cityListing" >
-                <i class="fa fa-ticket"></i>
-                <span>Cities</span>
-              </a>
-            </li>
+            
             <li class="treeview">
               <a href="<?php echo base_url(); ?>userListing">
                 <i class="fa fa-users"></i>
@@ -126,14 +132,56 @@
             ?>
             
             <li class="treeview">
-              <a href="<?php echo base_url(); ?>admin/discipline/disciplineListing" >
+              <a href="<?php echo base_url(); ?>jobprovider/discipline/disciplineListing" >
                 <i class="fa fa-ticket"></i>
                 <span>Disciplines</span>
               </a>
             </li>
+            <?php if($role == ROLE_ADMIN){ ?>
+            <li class="treeview">
+              <a href="<?php echo base_url(); ?>admin/jobtype/jobTypeListing" >
+                <i class="fa fa-ticket"></i>
+                <span>Job Types</span>
+              </a>
+            </li>
+            
+            <?php } ?>
+           <li class="treeview">
+              <a href="<?php echo base_url(); ?>jobprovider/job/jobListing" >
+                <i class="fa fa-ticket"></i>
+                <span>Jobs</span>
+              </a>
+            </li>
             <?php
             }
+            if($role == ROLE_JOBSEEKER){
             ?>
+            <li class="treeview">
+              <a href="#"><span>Jobs</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>job/list" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Listing</span>
+                            </a>
+                          </li>
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>job/savedList" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Saved</span>
+                            </a>
+                          </li>
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>job/appliedList" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Applied</span>
+                            </a>
+                          </li>
+              </ul>
+                
+                
+            </li>
+            <?php } ?>
           </ul>
         </section>
         <!-- /.sidebar -->

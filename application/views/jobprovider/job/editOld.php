@@ -1,14 +1,14 @@
 <?php
 
-$id = $name = $country_id = '';
-
-if(!empty($stateInfo))
+$id = $name = $job_type_id = $discipline_id = '';
+if(!empty($jobInfo))
 {
-    foreach ($stateInfo as $uf)
+    foreach ($jobInfo as $uf)
     {
         $id = $uf->id;
         $name = $uf->name;
-        $country_id = $uf->country_id;
+        $job_type_id = $uf->job_type_id;
+        $discipline_id = $uf->discipline_id;
         
     }
 }
@@ -20,8 +20,8 @@ if(!empty($stateInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> State Management
-        <small>Add / Edit State</small>
+        <i class="fa fa-users"></i> Job Management
+        <small>Add / Edit Job</small>
       </h1>
     </section>
     
@@ -58,6 +58,9 @@ if(!empty($stateInfo))
             </div>
         </div>
         <div class="row">
+            
+            
+        
             <!-- left column -->
             <div class="col-md-8">
               <!-- general form elements -->
@@ -66,11 +69,11 @@ if(!empty($stateInfo))
                 
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Enter State Details</h3>
+                        <h3 class="box-title">Enter Job Details</h3>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>admin/state/editState" method="post" id="editState" role="form">
+                    <form role="form" action="<?php echo base_url() ?>jobprovider/job/editJob" method="post" id="editJob" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">                                
@@ -79,17 +82,38 @@ if(!empty($stateInfo))
                                         <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name; ?>" maxlength="128">
                                         <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />    
                                     </div>
-                                     <div class="form-group">
-                                        <label for="role">Country</label>
-                                        <select class="form-control" id="country_id" name="country_id">
-                                            <option value="">Select Country</option>
+                                    <div class="form-group">
+                                        <label for="discipline">Discipline</label>
+                                        <select class="form-control" id="discipline_id" name="discipline_id">
+                                            <option value="">Select Job type</option>
                                             <?php
-                                            if(!empty($countries))
+                                            if(!empty($disciplines))
                                             {
-                                                foreach ($countries as $rl)
+                                                foreach ($disciplines as $rl)
                                                 {
                                                     ?>
-                                                    <option value="<?php echo $rl->id; ?>" <?php if($rl->id == $country_id) {echo "selected=selected";} ?>><?php echo $rl->name ?></option>
+                                                    <option value="<?php echo $rl->id; ?>" <?php if($rl->id == $discipline_id) {echo "selected=selected";} ?>><?php echo $rl->name ?></option>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    
+                                     
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="role">Job Type</label>
+                                        <select class="form-control" id="job_type_id" name="job_type_id">
+                                            <option value="">Select Job type</option>
+                                            <?php
+                                            if(!empty($job_types))
+                                            {
+                                                foreach ($job_types as $rl)
+                                                {
+                                                    ?>
+                                                    <option value="<?php echo $rl->id; ?>" <?php if($rl->id == $job_type_id) {echo "selected=selected";} ?>><?php echo $rl->name ?></option>
                                                     <?php
                                                 }
                                             }
@@ -113,4 +137,5 @@ if(!empty($stateInfo))
         </div>    
     </section>
 </div>
-<script src="<?php echo base_url(); ?>assets/js/admin/state.js" type="text/javascript"></script>
+
+<script src="<?php echo base_url(); ?>assets/js/jobprovider/job.js" type="text/javascript"></script>

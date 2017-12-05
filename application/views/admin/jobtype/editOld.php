@@ -3,9 +3,9 @@
 $id = '';
 $name = '';
 
-if(!empty($disciplineInfo))
+if(!empty($jobtypeInfo))
 {
-    foreach ($disciplineInfo as $uf)
+    foreach ($jobtypeInfo as $uf)
     {
         $id = $uf->id;
         $name = $uf->name;
@@ -20,49 +20,13 @@ if(!empty($disciplineInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Discipline Management
-        <small>Add / Edit Discipline</small>
+        <i class="fa fa-users"></i> Jobtype Management
+        <small>Add / Edit Jobtype</small>
       </h1>
     </section>
     
     <section class="content">
-    
         <div class="row">
-            <!-- left column -->
-            <div class="col-md-8">
-              <!-- general form elements -->
-                
-                
-                
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Enter Discipline Details</h3>
-                    </div><!-- /.box-header -->
-                    <!-- form start -->
-                    
-                    <form role="form" action="<?php echo base_url() ?>admin/discipline/editDiscipline" method="post" id="editDiscipline" role="form">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-6">                                
-                                    <div class="form-group">
-                                        <label for="fname">Name</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name; ?>" maxlength="128">
-                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />    
-                                    </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            
-                        </div><!-- /.box-body -->
-    
-                        <div class="box-footer">
-                            <input type="submit" class="btn btn-primary" value="Submit" />
-                            <input type="reset" class="btn btn-default" value="Reset" />
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="col-md-4">
                 <?php
                     $this->load->helper('form');
@@ -92,8 +56,46 @@ if(!empty($disciplineInfo))
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-8">
+              <!-- general form elements -->
+                
+                
+                
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Enter Jobtype Details</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    
+                    <form role="form" action="<?php echo base_url() ?>admin/jobtype/editjobtype" method="post" id="editJobtype" role="form">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">                                
+                                    <div class="form-group">
+                                        <label for="fname">Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="<?php echo $name; ?>" maxlength="128">
+                                        <input type="hidden" value="<?php echo $id; ?>" name="id" id="id" />    
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        </div><!-- /.box-body -->
+    
+                        <div class="box-footer">
+                            <input type="submit" class="btn btn-primary" value="Submit" />
+                            <input type="reset" class="btn btn-default" value="Reset" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
         </div>    
     </section>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/admin/discipline.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>assets/js/admin/jobtype.js" type="text/javascript"></script>

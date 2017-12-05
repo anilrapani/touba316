@@ -1,3 +1,13 @@
+/* 
+ * Copyright (C) 2017 Kastech
+ * @project : touba316
+ * @author : Anil Rapani
+ * @email : arapani@kastechindia.com
+ * @since : Dec 5, 2017
+ * @version : 
+ */
+
+
 /**
  * File : country.js 
  * 
@@ -8,9 +18,9 @@
 
 $(document).ready(function(){
 	
-	var countryForm = $("#addCountry,#editCountry");
+	var jobtypeForm = $("#addJobtype,#editJobtype");
 	
-	countryForm.validate({
+	jobtypeForm.validate({
 		
 		rules:{
 			name :{ required : true }

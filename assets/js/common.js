@@ -109,7 +109,7 @@ jQuery(document).ready(function(){
         
         jQuery(document).on("click", ".deleteDiscipline", function(){
 		var id = $(this).data("id"),
-			hitURL = baseURL + "admin/discipline/deleteDiscipline",
+			hitURL = baseURL + "jobprovider/discipline/deleteDiscipline",
 			currentRow = $(this);
 		
 		var confirmation = confirm("Are you sure to delete this Discipline ?");
@@ -131,6 +131,56 @@ jQuery(document).ready(function(){
 		}
 	});
 	
+        
+        jQuery(document).on("click", ".deleteJob", function(){
+		var id = $(this).data("id"),
+			hitURL = baseURL + "jobprovider/job/deleteJob",
+			currentRow = $(this);
+		
+		var confirmation = confirm("Are you sure to delete this Job ?");
+		
+		if(confirmation)
+		{
+			jQuery.ajax({
+			type : "POST",
+			dataType : "json",
+			url : hitURL,
+			data : { id : id } 
+			}).done(function(data){
+				console.log(data);
+				currentRow.parents('tr').remove();
+				if(data.status = true) { alert("Job successfully deleted"); }
+				else if(data.status = false) { alert("Job deletion failed"); }
+				else { alert("Access denied..!"); }
+			});
+		}
+	});
+        
+        
+         jQuery(document).on("click", ".deleteJobtype", function(){
+		var id = $(this).data("id"),
+			hitURL = baseURL + "admin/jobtype/deleteJobtype",
+			currentRow = $(this);
+		
+		var confirmation = confirm("Are you sure to delete this Job type ?");
+		
+		if(confirmation)
+		{
+			jQuery.ajax({
+			type : "POST",
+			dataType : "json",
+			url : hitURL,
+			data : { id : id } 
+			}).done(function(data){
+				console.log(data);
+				currentRow.parents('tr').remove();
+				if(data.status = true) { alert("Job type successfully deleted"); }
+				else if(data.status = false) { alert("Job type deletion failed"); }
+				else { alert("Access denied..!"); }
+			});
+		}
+	});
+        
 	
 	jQuery(document).on("click", ".searchList", function(){
 		

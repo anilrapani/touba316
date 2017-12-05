@@ -16,7 +16,7 @@ class Discipline extends BaseController
      */
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct();  
         $this->load->model('discipline_model');
         $this->isLoggedIn(); 
     }
@@ -26,7 +26,7 @@ class Discipline extends BaseController
          */
         public function index()
         {
-             if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2 )
+             if($this->isjobprovider() == TRUE && $this->session->userdata('role') != 2 )
             {
                 $this->loadThis();
             }
@@ -53,13 +53,13 @@ class Discipline extends BaseController
             
             $count = $this->discipline_model->disciplineListingCount($searchText);
             $segment = 4;
-            $returns = $this->paginationCompress( "admin/discipline/disciplineListing/", $count, 5, $segment );
+            $returns = $this->paginationCompress( "jobprovider/discipline/disciplineListing/", $count, 5, $segment );
             
             
             $data['disciplineRecords'] = $this->discipline_model->disciplineListing($searchText, $returns['page'], $returns['offset']);
             
             $this->global['pageTitle'] = 'Touba : Discipline Listing';
-            $this->loadViews("admin/discipline/disciplines", $this->global, $data, NULL);
+            $this->loadViews("jobprovider/discipline/disciplines", $this->global, $data, NULL);
         }
     }
 
@@ -79,7 +79,7 @@ class Discipline extends BaseController
             $data = array();
             $this->global['pageTitle'] = 'Touba : Add New Discipline';
 
-            $this->loadViews("admin/discipline/addNew", $this->global, $data, NULL);
+            $this->loadViews("jobprovider/discipline/addNew", $this->global, $data, NULL);
         }
     }
 
@@ -122,7 +122,7 @@ class Discipline extends BaseController
                     $this->session->set_flashdata('error', 'Discipline creation failed');
                 }
                 
-                redirect('admin/Discipline/addNew');
+                redirect('jobprovider/Discipline/addNew');
             }
         }
     }
@@ -142,7 +142,7 @@ class Discipline extends BaseController
         {
             if($disciplineId == null)
             {
-                redirect('admin/discipline/disciplineListing');
+                redirect('jobprovider/discipline/disciplineListing');
             }
             
             
@@ -150,7 +150,7 @@ class Discipline extends BaseController
             
             $this->global['pageTitle'] = 'Touba : Edit Discipline';
             
-            $this->loadViews("admin/discipline/editOld", $this->global, $data, NULL);
+            $this->loadViews("jobprovider/discipline/editOld", $this->global, $data, NULL);
         }
     }
     
@@ -195,7 +195,7 @@ class Discipline extends BaseController
                     $this->session->set_flashdata('error', 'Discipline updation failed');
                 }
                 
-                redirect('admin/discipline/disciplineListing');
+                redirect('jobprovider/discipline/disciplineListing');
             }
         }
     }

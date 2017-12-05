@@ -8,9 +8,9 @@
 
 $(document).ready(function(){
 	
-	var addDisciplineForm = $("#addDiscipline");
+	var disciplineForm = $("#addDiscipline,#editDiscipline");
 	
-	addDisciplineForm.validate({
+	disciplineForm.validate({
 		
 		rules:{
 			name :{ required : true }
@@ -24,18 +24,4 @@ $(document).ready(function(){
 
     
     
-    
-	var editDisciplineForm = $("#editDiscipline");
-	
-	editDisciplineForm.validate({
-		
-		rules:{
-			name :{ required : true },
-			
-		},
-		messages:{
-			name :{ required : "This field is required" },
-			
-		}
-	});
 });

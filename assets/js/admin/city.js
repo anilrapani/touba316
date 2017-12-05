@@ -8,9 +8,9 @@
 
 $(document).ready(function(){
 	
-	var addCityForm = $("#addCity");
+	var cityForm = $("#addCity,#editCity");
 	
-	addCityForm.validate({
+	cityForm.validate({
 		
 		rules:{
 			name :{ required : true },
@@ -23,21 +23,4 @@ $(document).ready(function(){
 		}
 	});
 
-
-    
-    
-    
-	var editCityForm = $("#editCity");
-	
-	editCityForm.validate({
-		
-		rules:{
-			name :{ required : true },
-                        country_id :{ required : true, selected : true}
-		},
-		messages:{
-			name :{ required : "This field is required" },
-                        country_id : { required : "This field is required", selected : "Please select atleast one option" }
-		}
-	});
 });

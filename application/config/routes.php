@@ -82,3 +82,7 @@ $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
 
+$route['job/list'] = "jobseeker/job/joblisting";
+$route['job/detail/(:num)'] = "jobseeker/job/jobDetail/$1";
+$route['job/save'] = "jobseeker/job/save";
+

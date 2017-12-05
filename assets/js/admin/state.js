@@ -8,9 +8,9 @@
 
 $(document).ready(function(){
 	
-	var addStateForm = $("#addState");
+	var stateForm = $("#addState,#editState");
 	
-	addStateForm.validate({
+	stateForm.validate({
 		
 		rules:{
 			name :{ required : true },
@@ -24,20 +24,4 @@ $(document).ready(function(){
 	});
 
 
-    
-    
-    
-	var editStateForm = $("#editState");
-	
-	editStateForm.validate({
-		
-		rules:{
-			name :{ required : true },
-                        discipline_id :{ required : true, selected : true}
-		},
-		messages:{
-			name :{ required : "This field is required" },
-                        discipline_id : { required : "This field is required", selected : "Please select atleast one option" }
-		}
-	});
 });
