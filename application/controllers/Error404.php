@@ -9,7 +9,7 @@ if(!defined('BASEPATH')) exit('No direct script access allowed');
  * @version : 
  */
 
-class Error extends CI_Controller
+class Error404 extends CI_Controller
 {
     /**
      * This is default constructor of the class

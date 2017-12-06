@@ -40,7 +40,7 @@ class Job extends BaseController
      * This function is used to load the job list
      */
     function jobListing()
-    {
+    {   
         if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
         {
             $this->loadThis();
@@ -155,12 +155,12 @@ class Job extends BaseController
             
             $this->load->model('jobtype_model');
             $data['job_types'] = $this->jobtype_model->getJobTypeList();
-            
+
             $this->load->model('discipline_model');
             $data['disciplines'] = $this->discipline_model->getDisciplineList();
             
-            $data['jobInfo'] = $this->job_model->getJobInfo($jobId);
-            
+            $data['jobInfo'] = $this->job_model->getDetails($jobId);
+                        
             $this->global['pageTitle'] = 'Touba : Edit Job';
             
             $this->loadViews("jobprovider/job/editOld", $this->global, $data, NULL);
@@ -242,6 +242,103 @@ class Job extends BaseController
             else { echo(json_encode(array('status'=>FALSE))); }
         }
     }
+    
+     /**
+     * This function is used to load the job list
+     */
+    function jobseekerDetail($jobseekerId)
+    {
+            $this->load->model('job_model');
+            $this->global['pageTitle'] = 'Touba : Job Seeker Detail';
+            $this->load->model('job_model');
+            $vendorId = $this->vendorId;
+            
+            $data['isSaved'] = $this->job_model->checkIfJobseekerAlreadySaved($jobseekerId,$vendorId);
+            
+            $data['jobseekerInfo'] = $this->job_model->getJobseekerInfo($jobseekerId);
+         
+            $this->loadViews("jobprovider/job/jobseekerdetail", $this->global, $data, NULL);
+      
+    }
+    
+    
+      /**
+     * This function is used to load the job list
+     */
+    function saveJobseeker()
+    {   
+            $user_id_jobseeker = $this->input->post('user_id_jobseeker');
+            
+            $jobseekerInfo = array( 'user_id_jobseeker' => $user_id_jobseeker, 'user_id_recruiter' => $this->vendorId, 'status'=> 1, 'deleted'=> 2, 'created_by'=>$this->vendorId, 'create_time'=>date('Y-m-d H:i:s'));
+            $this->load->model('job_model');
+            $result = $this->job_model->saveJobSeeker($jobseekerInfo);
+            redirect('jobprovider/job/jobseekersavedlist');
+     }
+    
+    
+     /**
+     * This function is used to load the user list
+     */
+    function jobseekerList()
+    {
+        
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            
+            $this->load->model('job_model');
+            
+            $searchText = $this->input->post('searchText');
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            
+            $count = $this->job_model->jobseekerListingCount($searchText);
+            $segment = 4;
+            $returns = $this->paginationCompress ("jobprovider/job/jobseekerList/", $count, 5, $segment);
+            
+            $data['jobseekerRecords'] = $this->job_model->jobseekerListing($searchText, $returns["page"], $returns["offset"]);
+         
+            $this->global['pageTitle'] = 'Touba : Job Seeker Listing';
+            $this->loadViews("jobprovider/job/jobseekers", $this->global, $data, NULL);
+        }
+    }
+    
+    
+     /**
+     * This function is used to load the user list
+     */
+    function jobseekerSavedList()
+    {
+        if($this->isAdmin() == TRUE && $this->session->userdata('role') != 2)
+        {
+            $this->loadThis();
+        }
+        else
+        {
+            $this->load->model('user_model');
+        
+            $searchText = $this->input->post('searchText');
+            $data['searchText'] = $searchText;
+            
+            $this->load->library('pagination');
+            $vendorId = $this->vendorId;
+            $count = $this->job_model->jobseekerSavedListingCount($searchText, $vendorId);
+            $segment = 4;
+            $returns = $this->paginationCompress ( "jobprovider/job/jobseekerSavedList/", $count, 5, $segment );
+            
+            $data['jobseekerRecords'] = $this->job_model->jobseekerSavedListing($searchText, $returns["page"], $returns["offset"], $vendorId);
+   
+            
+            $this->global['pageTitle'] = 'Touba : Saved Job Seeker Listing';
+            $this->loadViews("jobprovider/job/jobseekers", $this->global, $data, NULL);
+        }
+    }
+    
+    
     
 
     function pageNotFound()

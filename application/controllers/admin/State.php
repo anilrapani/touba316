@@ -103,7 +103,7 @@ class State extends BaseController
             $this->load->library('form_validation');
             
             $this->form_validation->set_rules('name','Name','trim|required|max_length[128]');
-            $this->form_validation->set_rules('country','Country','trim|required|max_length[128]');
+            $this->form_validation->set_rules('country_id','Country','trim|required|max_length[128]');
             
             if($this->form_validation->run() == FALSE)
             {
@@ -112,9 +112,9 @@ class State extends BaseController
             else
             {
                 $name = ucwords(strtolower($this->input->post('name')));
-                $country = $this->input->post('country');
+                $country_id = $this->input->post('country_id');
                 
-                $stateInfo = array('name'=> $name, 'country_id' => $country, 'status'=> 1, 'deleted'=> 2, 'created_by'=>$this->vendorId, 'create_time'=>date('Y-m-d H:i:s'));
+                $stateInfo = array('name'=> $name, 'country_id' => $country_id, 'status'=> 1, 'deleted'=> 2, 'created_by'=>$this->vendorId, 'create_time'=>date('Y-m-d H:i:s'));
                 
                 $this->load->model('state_model');
                 $result = $this->state_model->addNewState($stateInfo);

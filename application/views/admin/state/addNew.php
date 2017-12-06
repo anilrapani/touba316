@@ -67,7 +67,7 @@
                                  <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="country">Country</label>
-                                        <select class="form-control required" id="country" name="country">
+                                        <select class="form-control required" id="country_id" name="country_id">
                                             <option value="0">Select Country</option>
                                             <?php
                                             if(!empty($countries))

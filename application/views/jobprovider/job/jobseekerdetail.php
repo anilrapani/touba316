@@ -1,14 +1,12 @@
 <?php
 
-$id = $name = $job_type_name = $discipline_name = '';
-if(!empty($jobInfo))
+$id = $name = '';
+if(!empty($jobseekerInfo))
 {
-    foreach ($jobInfo as $uf)
+    foreach ($jobseekerInfo as $uf)
     {
         $id = $uf->id;
         $name = $uf->name;
-        $job_type_name = $uf->jobtype;
-        $discipline_name = $uf->discipline;
         
     }
 }
@@ -20,7 +18,7 @@ if(!empty($jobInfo))
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-users"></i> Job Details
+        <i class="fa fa-users"></i> Jobseeker Details
         
       </h1>
     </section>
@@ -73,16 +71,14 @@ if(!empty($jobInfo))
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     
-                    <form role="form" action="<?php echo base_url() ?>job/save" method="post" id="editJob" role="form">
+                    <form role="form" action="<?php echo base_url() ?>jobprovider/job/savejobseeker" method="post" id="editJob" role="form">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">    
                                     <div class="box box-default">
                                     <div class="box-header ">
-                                        <h3 class="box-title"><span>Job Type : </span><?php echo $job_type_name; ?></h3>
-                                      <br><br>
-                                      <h3 class="box-title"><span>Discipline : </span><?php echo $discipline_name; ?></h3>
-                                      <input type="hidden" value="<?php echo $id; ?>" name="job_id" id="job_id" />    
+                                      <h3 class="box-title"><span>name: </span><?php echo $name; ?></h3>
+                                      <input type="hidden" value="<?php echo $id; ?>" name="user_id_jobseeker" id="user_id_jobseeker" />    
                                     </div>
                                     <div class="box-body">
                                       Description Goes here
@@ -99,12 +95,8 @@ if(!empty($jobInfo))
                         
                         <div class="box-footer">
                             
-                            <?php if(!isset($savedOrApplied) || ($savedOrApplied->type != 1 && $savedOrApplied->type != 2)){ ?>
+                            <?php if(!isset($isSaved) || $isSaved < 1){ ?>
                                         <input type="submit" class="btn btn-primary" name="submit" value="Save" />
-                                        <input type="submit" class="btn btn-primary" name="submit" value="Apply" />
-                            <?php } else if($savedOrApplied->type == 2){ ?>
-                            <?php } else  if($savedOrApplied->type == 1){ ?>
-                                        <input type="submit" class="btn btn-primary" value="Apply" />
                             <?php } ?>
                         </div>
                     </form>
@@ -115,4 +107,3 @@ if(!empty($jobInfo))
     </section>
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/jobprovider/job.js" type="text/javascript"></script>

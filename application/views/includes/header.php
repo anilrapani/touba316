@@ -38,7 +38,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>Touba</b></span>
           <!-- logo for regular state and mobile devices -->
-<!--          <span class="logo-lg"><b>Touba</b>AS</span>-->
+          <span class="logo-lg"><b>Touba</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -145,15 +145,36 @@
               </a>
             </li>
             
-            <?php } ?>
+            <?php } if($role == ROLE_JOBPROVIDER){?>
            <li class="treeview">
               <a href="<?php echo base_url(); ?>jobprovider/job/jobListing" >
                 <i class="fa fa-ticket"></i>
                 <span>Jobs</span>
               </a>
             </li>
+            <li class="treeview">
+              <a href="#"><span>Jobseeker</span> <i class="fa fa-angle-left pull-right"></i></a>
+              <ul class="treeview-menu">
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>jobprovider/job/jobseekerList" >
+                              <i class="fa fa-ticket"></i>
+                              <span>List</span>
+                            </a>
+                          </li>
+                          <li class="treeview">
+                            <a href="<?php echo base_url(); ?>jobprovider/job/jobseekersavedList" >
+                              <i class="fa fa-ticket"></i>
+                              <span>Saved</span>
+                            </a>
+                          </li>
+              </ul>
+                
+                
+            </li>
+            
+            
             <?php
-            }
+            } }
             if($role == ROLE_JOBSEEKER){
             ?>
             <li class="treeview">
@@ -162,7 +183,7 @@
                           <li class="treeview">
                             <a href="<?php echo base_url(); ?>job/list" >
                               <i class="fa fa-ticket"></i>
-                              <span>Listing</span>
+                              <span>List</span>
                             </a>
                           </li>
                           <li class="treeview">

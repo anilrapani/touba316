@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'login';
-$route['404_override'] = '';
+$route['404_override'] = 'Error404';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['register'] = "register/addNew";
@@ -81,8 +81,17 @@ $route['resetPasswordConfirmUser'] = "login/resetPasswordConfirmUser";
 $route['resetPasswordConfirmUser/(:any)'] = "login/resetPasswordConfirmUser/$1";
 $route['resetPasswordConfirmUser/(:any)/(:any)'] = "login/resetPasswordConfirmUser/$1/$2";
 $route['createPasswordUser'] = "login/createPasswordUser";
-
 $route['job/list'] = "jobseeker/job/joblisting";
+$route['job/list/(:num)'] = "jobseeker/job/joblisting/$1";
 $route['job/detail/(:num)'] = "jobseeker/job/jobDetail/$1";
 $route['job/save'] = "jobseeker/job/save";
 
+$route['job/savedList'] = "jobseeker/job/savedList";
+$route['job/savedList/(:num)'] = "jobseeker/job/savedList/$1";
+
+$route['job/appliedList'] = "jobseeker/job/appliedList";
+$route['job/appliedList/(:num)'] = "jobseeker/job/appliedList/$1";
+
+$route['jobprovider/job/jobseekerdetail/(:num)'] = "jobprovider/job/jobseekerdetail/$1";
+$route['jobprovider/job/jobseekerList/(:num)'] = "jobprovider/job/jobseekerList/$1";
+$route['jobprovider/job/jobseekerSavedList/(:num)'] = "jobprovider/job/jobseekerSavedList/$1";
